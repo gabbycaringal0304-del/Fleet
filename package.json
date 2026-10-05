@@ -1,0 +1,20 @@
+{
+  "name": "fleetsync-admin-functions",
+  "private": true,
+  "engines": {
+    "node": "20"
+  },
+  "main": "index.js",
+  "scripts": {
+    "lint": "node --check index.js && node --check migrate-realtime-to-firestore.js && node --check cleanup-demo-data.js && node --check test/cleanup-demo-data.test.js",
+    "test": "node --test test/cleanup-demo-data.test.js test/migrate-realtime-to-firestore.test.js",
+    "migrate:legacy-rtdb": "node migrate-realtime-to-firestore.js --dry-run",
+    "migrate:legacy-rtdb:execute": "node migrate-realtime-to-firestore.js --execute",
+    "cleanup:demo-data": "node cleanup-demo-data.js --dry-run",
+    "cleanup:demo-data:execute": "node cleanup-demo-data.js --execute"
+  },
+  "dependencies": {
+    "firebase-admin": "^13.4.0",
+    "firebase-functions": "^6.4.0"
+  }
+}
